@@ -1,7 +1,12 @@
 // ignore_for_file: prefer_interpolation_to_compose_strings
 
+import 'package:beginners_flutter/misc/colors.dart';
+import 'package:beginners_flutter/widget/app_large_text.dart';
+import 'package:beginners_flutter/widget/responsive_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../widget/app_text.dart';
 
 class WelcomePage  extends StatefulWidget {
   const WelcomePage({Key? key}) : super(key: key);
@@ -14,8 +19,15 @@ class _WelcomePageState extends State<WelcomePage> {
    List images = [
      "welcome-one.png",
      "welcome-two.png",
-     "welcome-three.png",
+     "welcome-three.png"
    ];
+
+   List text = [
+     "Trips",
+     "Travel",
+     "Korea",
+   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,8 +48,32 @@ class _WelcomePageState extends State<WelcomePage> {
                     fit: BoxFit.cover
                   )
                 ),
-                child: Container(
+                child: Container( //image위에 차일드로 컨테이너가 올라올것이다.
+                  //올라올 때 위에가 150 양옆이 20으로 마진이 벌어질것이다.
                   margin: const EdgeInsets.only(top: 150,left: 20,right: 20),
+                  child: Row( //가로로 줄것이고
+                    children: [
+                      Column( //그 위에 세로로 줄것이다.
+                        //텍스트의 길이때문에 Trips가 가운데로 올것이다 alignment해줌.
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [ //로우 컬럼은 무조건 childern해줨
+                          AppLargeText(text: text[index]),
+                          AppText(text: "Mountain",size: 30),
+                          const SizedBox(height: 20,),
+                          Container(
+                            width: 250,
+                            child: AppText(
+                              text: "Mountina Hikes give you an incredible sensce of freedom alone with you engrujd test",
+                              color: AppColors.textColor2,
+                              size: 14,
+                            ),
+                          ),
+                          const SizedBox(height: 40,),
+                          ResponsiveButton(width: 120),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               );
         })
