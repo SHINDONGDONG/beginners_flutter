@@ -52,11 +52,11 @@ class _WelcomePageState extends State<WelcomePage> {
                   //올라올 때 위에가 150 양옆이 20으로 마진이 벌어질것이다.
                   margin: const EdgeInsets.only(top: 150,left: 20,right: 20),
                   child: Row( //가로로 줄것이고
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Column( //그 위에 세로로 줄것이다.
-                        //텍스트의 길이때문에 Trips가 가운데로 올것이다 alignment해줌.
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [ //로우 컬럼은 무조건 childern해줨
+                        crossAxisAlignment: CrossAxisAlignment.start,//텍스트의 길이때문에 Trips가 가운데로 올것이다 alignment해줌.
+                         children: [ //로우 컬럼은 무조건 childern해줨
                           AppLargeText(text: text[index]),
                           AppText(text: "Mountain",size: 30),
                           const SizedBox(height: 20,),
@@ -71,6 +71,19 @@ class _WelcomePageState extends State<WelcomePage> {
                           const SizedBox(height: 40,),
                           ResponsiveButton(width: 120),
                         ],
+                      ),
+                      Column(
+                        children: List.generate(images.length, (indexDots) {
+                          return Container(
+                            margin: const EdgeInsets.only(bottom: 2),
+                            width: 8,
+                            height: index==indexDots? 25 : 8,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: index==indexDots ? AppColors.mainColor : AppColors.mainColor.withOpacity(0.3)
+                            )
+                          );
+                        }),
                       )
                     ],
                   ),
