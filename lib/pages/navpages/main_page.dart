@@ -32,8 +32,11 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: pages[0], //바디에 hompage()가 표시될것이다 로드되면.
+      backgroundColor: Colors.white,
+      body: pages[currentIndex], //바디에 hompage()가 표시될것이다 로드되면.
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
+        type: BottomNavigationBarType.fixed,
         onTap: onTap,
         currentIndex: currentIndex,
         selectedItemColor: Colors.black54, //선택될때 컬러
