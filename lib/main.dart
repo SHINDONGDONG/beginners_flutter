@@ -1,3 +1,4 @@
+import 'package:beginners_flutter/pages/navpages/main_page.dart';
 import 'package:beginners_flutter/pages/welcome_page.dart';
 import 'package:flutter/material.dart';
 
@@ -12,12 +13,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
+        title: 'Flutter Demo',
+        theme: ThemeData(
 
-        primarySwatch: Colors.blue,
-      ),
-      home: const WelcomePage()
+          primarySwatch: Colors.blue,
+        ),
+        home: const MainPage()
     );
   }
 }
