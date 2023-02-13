@@ -12,10 +12,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+  //key value값으로 이미지를 받아오자.
+  var images = {
+    "goal.png":"Goal",
+    "rocket.png":"Rocket",
+    "airplane.png":"Airplane",
+    "repair-tools.png":"Tools"
+  };
+
   @override
   Widget build(BuildContext context) {
     TabController _tabController = TabController(length: 3, vsync: this);
-
     return Scaffold(
       body: Container(
         margin: const EdgeInsets.only(left: 20, right: 20, top: 70),
@@ -44,12 +51,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               ),
             ),
             const SizedBox(
-              height: 40,
+              height: 30,
             ),
             Container(
               child: AppLargeText(text: "Discover"),
             ), //디스커버 컨테이너
-            const SizedBox(height: 40),
+            const SizedBox(height: 20),
             //tabbar
             Container(
               child: Align(
@@ -124,11 +131,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               height: 20,
             ),
             Container(
-              height: 100,
+              height: 120,
               width: double.maxFinite,
               // margin: const EdgeInsets.only(left: 20),
               child: ListView.builder(
-                itemCount: 4,
+                itemCount: images.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (_, int index) {
                   return Container(
@@ -136,18 +143,19 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     child: Column(
                       children: [
                         Container(
-                          // margin: EdgeInsets.only(right: 50),
                           width: 80,
                           height: 80,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
-                            image: const DecorationImage(
-                                image: AssetImage("img/mountain.jpg"),
-                                fit: BoxFit.cover),
+                            image: DecorationImage(
+                                image: AssetImage("img/${images.keys.elementAt(index)}"),
+                                fit: BoxFit.cover
+                            ), 
                           ),
                         ),
+                        SizedBox(height: 10,),
                         Container(
-                          child: AppText(text: "Kayyaking"),
+                          child: AppText(text: images.values.elementAt(index)),
                         ),
                       ],
                     ),
@@ -155,12 +163,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 },
               ),
             ),
+            const SizedBox(height: 5,)
           ],
         ),
       ),
     );
   }
-}
+} 
 
 //데코레이션을 extends로 받아주어야 decoration에서 적용가능하다.
 class CircleTabIndicator extends Decoration {
@@ -171,7 +180,7 @@ class CircleTabIndicator extends Decoration {
 
   @override
   BoxPainter createBoxPainter([VoidCallback? onChanged]) {
-    return _CirclePainter(color: color, radius: radius);
+    return _CirclePainter(color:  color, radius: radius);
   }
 }
 
