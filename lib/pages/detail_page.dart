@@ -15,7 +15,7 @@ class DetailPage extends StatefulWidget {
 
 class _DetailPageState extends State<DetailPage> {
   int selectIndex = -1;
-
+  bool isActivehart = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -188,12 +188,21 @@ class _DetailPageState extends State<DetailPage> {
               right: 30,
               child: Row(
               children: [
-                AppButtons(size: 10,
-                    color: AppColors.textColor2,
-                    backgroundColor: Colors.white,
-                    borderColor: AppColors.textColor1,
-                    isIcon: true,
-                    icon: Icons.favorite_border,
+                InkWell(
+                  onTap: (){
+                    setState(() {
+                      isActivehart = !isActivehart;
+                    });
+                  },
+                  child: Container(
+                    child: AppButtons(size: 10,
+                        color: isActivehart==true ? Colors.white : AppColors.textColor2,
+                        backgroundColor: isActivehart==true ? Colors.red  :Colors.white,
+                        borderColor: AppColors.textColor1,
+                        isIcon: true,
+                        icon: isActivehart==true ? Icons.favorite :Icons.favorite_border,
+                    ),
+                  ),
                 ),
                 SizedBox(width: 20,),
                 ResponsiveButton(
